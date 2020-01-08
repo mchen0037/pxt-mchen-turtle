@@ -70,7 +70,7 @@ namespace turtle {
     `)
   }
 
-  //% blockId=penUpBlock block="penUp"
+  //% blockId=penUpBlock block="pen up"
   //% weight=98 blockGap=8
   export function penUp(): void {
     basic.showLeds(`
@@ -83,7 +83,7 @@ namespace turtle {
 
   }
 
-  //% blockId=penDownBlock block="penDown"
+  //% blockId=penDownBlock block="pen down"
   //% weight=98 blockGap=8
   export function penDown(): void {
     basic.showLeds(`
