@@ -8,6 +8,7 @@ namespace turtle {
         pins.analogWritePin(AnalogPin.P2, 0)
         pins.digitalWritePin(DigitalPin.P15, 0)
         pins.digitalWritePin(DigitalPin.P16, 0)
+        basic.pause(500)
     }
 
     export function motorForward(): void {
@@ -50,7 +51,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function forward(steps: number): void {
         motorForward()
-        basic.pause(500 * steps * steps)
+        basic.pause(500 * steps)
         motorStop()
     }
 
@@ -66,40 +67,45 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function rightTurnDegrees(degrees: number): void {
         motorRight()
-        basic.pause(10 * degrees)
+        // after some testing, found that 1 second turn yields ~100 degrees.
+        basic.pause(1000 * degrees / 100)
         motorStop()
     }
 
     //% blockId=rightTurnBlock block="turn right"
     //% weight=98 blockGap=8
     export function rightTurn(): void {
-        rightTurnDegrees(90)
+        rightTurnDegrees(1)
     }
 
     //% blockId=leftTurnDegreesBlock block="turn left by %degrees|degrees"
     //% weight=98 blockGap=8
     export function leftTurnDegrees(degrees: number): void {
         motorLeft()
-        basic.pause(10 * degrees)
+        basic.pause(1000 * degrees / 100)
         motorStop()
     }
 
     //% blockId=leftTurnBlock block="turn left"
     //% weight=98 blockGap=8
     export function leftTurn(): void {
-        leftTurnDegrees(90)
+        leftTurnDegrees(1)
     }
 
     //% blockId=penUpBlock block="pen up"
     //% weight=98 blockGap=8
     export function penUp(): void {
+        basic.pause(500)
         pins.servoWritePin(AnalogPin.P12, 0)
+        basic.pause(500)
     }
 
     //% blockId=penDownBlock block="pen down"
     //% weight=98 blockGap=8
     export function penDown(): void {
+        basic.pause(500)
         pins.servoWritePin(AnalogPin.P12, 90)
+        basic.pause(500)
     }
 }
 pins.digitalWritePin(DigitalPin.P14, 1)
