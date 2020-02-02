@@ -99,7 +99,7 @@ namespace turtle {
     //% blockId=penDownBlock block="pen down"
     //% weight=98 blockGap=8
     export function penDown(): void {
-        pins.servoWritePin(AnalogPin.P12, 180)
+        pins.servoWritePin(AnalogPin.P12, 90)
     }
 }
 pins.digitalWritePin(DigitalPin.P14, 1)
