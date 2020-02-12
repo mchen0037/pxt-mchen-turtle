@@ -68,7 +68,7 @@ namespace turtle {
     export function rightTurnDegrees(degrees: number): void {
         motorRight()
         // after some testing, found that 1 second turn yields ~100 degrees.
-        basic.pause(1000 * degrees / 100)
+        basic.pause(1000 * (degrees - 5) / 100)
         motorStop()
     }
 
@@ -82,7 +82,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function leftTurnDegrees(degrees: number): void {
         motorLeft()
-        basic.pause(1000 * degrees / 100)
+        basic.pause(1000 * (degrees - 5) / 100)
         motorStop()
     }
 
@@ -109,6 +109,37 @@ namespace turtle {
     }
 }
 pins.digitalWritePin(DigitalPin.P14, 1)
+let uartData = ""
+let connected = 0
+bluetooth.startUartService()
+basic.showString("Hello!")
+
+bluetooth.onBluetoothDisconnected(function () {
+    connected = 0
+    basic.showIcon(IconNames.Sad)
+})
+
+bluetooth.onBluetoothConnected(function () {
+    connected = 1
+    basic.showIcon(IconNames.Happy)
+    while (connected == 1) {
+        uartData = bluetooth.uartReadUntil(serial.delimiters(Delimiters.Colon))
+        if (uartData == "up") {
+            turtle.motorForward()
+        } else if (uartData == "down") {
+            turtle.motorBack()
+        } else if (uartData == "left") {
+            turtle.motorLeft()
+        } else if (uartData == "right") {
+            turtle.motorRight()
+        } else if (uartData == "stop") {
+            turtle.motorStop()
+        } else {
+
+        }
+    }
+})
+
 
 control.onEvent(EventBusSource.MES_DPAD_CONTROLLER_ID, EventBusValue.MICROBIT_EVT_ANY, function () {
     if (control.eventValue() == EventBusValue.MES_DPAD_BUTTON_A_DOWN) {
