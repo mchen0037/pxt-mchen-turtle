@@ -134,6 +134,10 @@ bluetooth.onBluetoothConnected(function () {
             turtle.motorRight()
         } else if (uartData == "stop") {
             turtle.motorStop()
+        } else if (uartData == "pDown") {
+            turtle.penUp()
+        } else if (uartData == "pUp") {
+            turtle.penDown()
         } else {
 
         }
