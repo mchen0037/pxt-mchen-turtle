@@ -112,7 +112,7 @@ pins.digitalWritePin(DigitalPin.P14, 1)
 let uartData = ""
 let connected = 0
 bluetooth.startUartService()
-basic.showString("Hello!")
+basic.showString("hi")
 
 bluetooth.onBluetoothDisconnected(function () {
     connected = 0
@@ -122,6 +122,8 @@ bluetooth.onBluetoothDisconnected(function () {
 bluetooth.onBluetoothConnected(function () {
     connected = 1
     basic.showIcon(IconNames.Happy)
+    basic.pause(1000)
+    basic.clearScreen()
     while (connected == 1) {
         uartData = bluetooth.uartReadUntil(serial.delimiters(Delimiters.Colon))
         if (uartData == "up") {
