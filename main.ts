@@ -29,7 +29,7 @@ namespace turtle {
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
 
-    export function motorRight(): void {
+    export function motorLeft(): void {
         pins.analogWritePin(AnalogPin.P1, 600)
         pins.digitalWritePin(DigitalPin.P12, 1)
         pins.digitalWritePin(DigitalPin.P13, 0)
@@ -38,7 +38,7 @@ namespace turtle {
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
 
-    export function motorLeft(): void {
+    export function motorRight(): void {
         pins.analogWritePin(AnalogPin.P1, 600)
         pins.digitalWritePin(DigitalPin.P12, 0)
         pins.digitalWritePin(DigitalPin.P13, 1)
@@ -137,9 +137,9 @@ bluetooth.onBluetoothConnected(function () {
         } else if (uartData == "stop") {
             turtle.motorStop()
         } else if (uartData == "pDown") {
-            turtle.penUp()
-        } else if (uartData == "pUp") {
             turtle.penDown()
+        } else if (uartData == "pUp") {
+            turtle.penUp()
         } else {
 
         }
