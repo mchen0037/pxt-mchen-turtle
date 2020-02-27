@@ -147,7 +147,12 @@ bluetooth.onBluetoothConnected(function () {
 })
 
 input.onButtonPressed(Button.AB, function () {
-    (isPenDown) ? turtle.penUp() : turtle.penDown();
+    if (isPenDown == true) {
+        turtle.penUp();
+    }
+    else {
+        turtle.penDown();
+    }
     isPenDown = !isPenDown;
 })
 
