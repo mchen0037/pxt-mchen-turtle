@@ -68,7 +68,7 @@ namespace turtle {
     export function rightTurnDegrees(degrees: number): void {
         motorRight()
         // after some testing, found that 1 second turn yields ~100 degrees.
-        basic.pause(1000 * (degrees - 10) / 100)
+        basic.pause(1000 * (degrees - 20) / 100)
         motorStop()
     }
 
@@ -82,7 +82,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function leftTurnDegrees(degrees: number): void {
         motorLeft()
-        basic.pause(1000 * (degrees - 10) / 100)
+        basic.pause(1000 * (degrees - 20) / 100)
         motorStop()
     }
 
