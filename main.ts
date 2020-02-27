@@ -51,7 +51,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function forward(steps: number): void {
         motorForward()
-        basic.pause(500 * steps)
+        basic.pause(100 * steps)
         motorStop()
     }
 
@@ -59,7 +59,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function back(steps: number): void {
         motorBack()
-        basic.pause(500 * steps)
+        basic.pause(100 * steps)
         motorStop()
     }
 
@@ -75,7 +75,7 @@ namespace turtle {
     //% blockId=rightTurnBlock block="turn right"
     //% weight=98 blockGap=8
     export function rightTurn(): void {
-        rightTurnDegrees(1)
+        rightTurnDegrees(90)
     }
 
     //% blockId=leftTurnDegreesBlock block="turn left by %degrees|degrees"
@@ -89,7 +89,7 @@ namespace turtle {
     //% blockId=leftTurnBlock block="turn left"
     //% weight=98 blockGap=8
     export function leftTurn(): void {
-        leftTurnDegrees(1)
+        leftTurnDegrees(90)
     }
 
     //% blockId=penUpBlock block="pen up"
@@ -146,6 +146,11 @@ bluetooth.onBluetoothConnected(function () {
     }
 })
 
+input.onButtonPressed(Button.AB, function () {
+    turtle.penDown()
+    basic.pause(1000)
+    turtle.penUp()
+})
 
 control.onEvent(EventBusSource.MES_DPAD_CONTROLLER_ID, EventBusValue.MICROBIT_EVT_ANY, function () {
     if (control.eventValue() == EventBusValue.MES_DPAD_BUTTON_A_DOWN) {
