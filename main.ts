@@ -68,7 +68,7 @@ namespace turtle {
     export function rightTurnDegrees(degrees: number): void {
         motorRight()
         // after some testing, found that 1 second turn yields ~100 degrees.
-        basic.pause(1000 * (degrees - 7.5) / 100)
+        basic.pause(1000 * (degrees - 5.5) / 100)
         motorStop()
     }
 
@@ -82,7 +82,7 @@ namespace turtle {
     //% weight=98 blockGap=8
     export function leftTurnDegrees(degrees: number): void {
         motorLeft()
-        basic.pause(1000 * (degrees - 7.5) / 100)
+        basic.pause(1000 * (degrees - 5.5) / 100)
         motorStop()
     }
 
@@ -147,11 +147,12 @@ bluetooth.onBluetoothConnected(function () {
 })
 
 input.onButtonPressed(Button.AB, function () {
-    turtle.penDown()
-    basic.pause(1000)
-    turtle.penUp()
+    (isPenDown) ? turtle.penUp() : turtle.penDown();
+    isPenDown = !isPenDown;
 })
 
+let isPenDown = true;
+turtle.penDown();
 control.onEvent(EventBusSource.MES_DPAD_CONTROLLER_ID, EventBusValue.MICROBIT_EVT_ANY, function () {
     if (control.eventValue() == EventBusValue.MES_DPAD_BUTTON_A_DOWN) {
         turtle.motorForward()
