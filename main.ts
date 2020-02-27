@@ -153,6 +153,7 @@ input.onButtonPressed(Button.AB, function () {
 
 let isPenDown = true;
 turtle.penDown();
+
 control.onEvent(EventBusSource.MES_DPAD_CONTROLLER_ID, EventBusValue.MICROBIT_EVT_ANY, function () {
     if (control.eventValue() == EventBusValue.MES_DPAD_BUTTON_A_DOWN) {
         turtle.motorForward()
